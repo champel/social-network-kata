@@ -1,6 +1,8 @@
 package cat.champel.social.runtime;
 
 import cat.champel.social.infrastructure.clock.Clock;
+import cat.champel.social.infrastructure.inmemory.InMemoryNetworkCollection;
+import cat.champel.social.infrastructure.inmemory.InMemoryPostCollection;
 
 public class SocialInMemoryRuntime {
 	private SocialInMemoryRuntime() {}
@@ -8,9 +10,8 @@ public class SocialInMemoryRuntime {
 	public static SocialActions build() {
 		return SocialActions.build(SocialModel.build(
 			new Clock(),
-			//TODO Inject repository implementations when created
-			null,
-			null
+			new InMemoryPostCollection(),
+			new InMemoryNetworkCollection()
 		));
 	}
 }
