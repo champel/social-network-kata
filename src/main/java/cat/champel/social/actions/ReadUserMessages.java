@@ -1,10 +1,19 @@
 package cat.champel.social.actions;
 
-public class ReadUserMessages {
+import java.util.List;
 
-	public Object execute(String userMessage) {
-		// TODO Auto-generated method stub
-		return null;
+import cat.champel.social.model.posts.Post;
+import cat.champel.social.model.posts.PostsService;
+
+public class ReadUserMessages {
+	private final PostsService postsService;
+
+	public ReadUserMessages(PostsService postsService) {
+		this.postsService = postsService;
+	}
+
+	public List<Post> execute(String userName) {
+		return postsService.byUserName(userName);
 	}
 
 }

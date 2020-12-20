@@ -12,10 +12,10 @@ public class SocialActions {
 	private final FollowUser followUser;
 
 	private SocialActions(SocialModel socialModel) {
-		this.postMessage = new PostUserMessage();
-		this.readUserMessages = new ReadUserMessages();
-		this.readWallMessages = new ReadWallMessages();
-		this.followUser = new FollowUser();
+		this.postMessage = new PostUserMessage(socialModel.postsService());
+		this.readUserMessages = new ReadUserMessages(socialModel.postsService());
+		this.readWallMessages = new ReadWallMessages(socialModel.networkService(), socialModel.postsService());
+		this.followUser = new FollowUser(socialModel.networkService());
 	}
 	
 	public static SocialActions build(SocialModel socialModel) {

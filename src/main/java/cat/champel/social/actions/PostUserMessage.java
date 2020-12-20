@@ -1,10 +1,17 @@
 package cat.champel.social.actions;
 
+import cat.champel.social.model.posts.PostsService;
+
 public class PostUserMessage {
 
-	public void execute(String userName, String message) {
-		// TODO Auto-generated method stub
-		
+	private final PostsService posts;
+
+	public PostUserMessage(PostsService posts) {
+		this.posts = posts;
+	}
+
+	public void execute(String userName, String postMessage) {
+		posts.submit(userName, postMessage);
 	}
 
 }

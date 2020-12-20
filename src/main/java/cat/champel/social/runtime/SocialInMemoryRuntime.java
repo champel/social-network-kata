@@ -7,8 +7,10 @@ public class SocialInMemoryRuntime {
 	
 	public static SocialActions build() {
 		return SocialActions.build(SocialModel.build(
-			new Clock()
-			//TODO Inject repository implementations when creaated 
+			new Clock(),
+			//TODO Inject repository implementations when created
+			null,
+			null
 		));
 	}
 }
