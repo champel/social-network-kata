@@ -1,18 +1,25 @@
 package cat.champel.social.model.network;
 
+import static java.util.stream.Collectors.toSet;
+
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class NetworkService {
+	private final NetworkCollection networkCollection;
+
 	public NetworkService(NetworkCollection networkCollection) {
-		//TODO Auto-generated method stub
+		this.networkCollection = networkCollection;
 	}
 
 	public void follow(String userName, String followedUserName) {
-		//TODO Auto-generated method stub
+		networkCollection.storeFollowRelation(userName, followedUserName);
 	}
 
 	public Set<String> wallUsersBy(String userName) {
-		//TODO Auto-generated method stub
-		return null;
+		return Stream.concat(
+				Stream.of(userName), 
+				networkCollection.followedBy(userName).stream()
+		).collect(toSet());
 	}
 }

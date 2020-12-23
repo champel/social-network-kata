@@ -7,21 +7,23 @@ import cat.champel.social.infrastructure.clock.Clock;
 
 public class PostsService {
 
+	private final Clock clock;
+	private final PostCollection postCollection;
+
 	public PostsService(Clock clock, PostCollection postCollection) {
-		//TODO Auto-generated method stub
+		this.clock = clock;
+		this.postCollection = postCollection;
 	}
 
 	public void submit(String userName, String postMessage) {
-		//TODO Auto-generated method stub
+		postCollection.store(Post.create(userName, postMessage, clock.currentTime()));
 	}
 
 	public List<Post> byUserName(String userName) {
-		//TODO Auto-generated method stub
-		return null;
+		return postCollection.by(userName);
 	}
 
 	public List<Post> byUserNames(Set<String> userNames) {
-		//TODO Auto-generated method stub
-		return null;
+		return postCollection.by(userNames);
 	}
 }
