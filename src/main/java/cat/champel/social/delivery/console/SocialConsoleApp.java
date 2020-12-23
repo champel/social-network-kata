@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import cat.champel.console.ConsoleApp;
+import cat.champel.social.model.posts.Post;
 import cat.champel.social.runtime.SocialActions;
 import cat.champel.social.runtime.SocialInMemoryRuntime;
 
@@ -14,9 +15,12 @@ public class SocialConsoleApp extends ConsoleApp {
 
 	public SocialConsoleApp(SocialActions socialActions) {
 		super(List.of(
-				//TODO Assign command builders
+				new PostCommandBuilder(socialActions.postMessage()),
+				new FollowCommandBuilder(socialActions.followUser()),
+				new WallMessagesCommandBuilder(socialActions.readWallMessages()),
+				new ReadMessagesCommandBuilder(socialActions.readUserMessages())
 			), Map.of(
-				//TODO Assign command builders
+				Post.class, new PostFormatter()
 			));
 	}
 	
